@@ -1,0 +1,439 @@
+{
+  "metadata": {
+    "title": "La Casa de la Domótica — Instalaciones a medida con Home Assistant",
+    "description": "Domótica a medida con Home Assistant en Madrid. Algoritmo de clima inigualable, instalaciones premium y control total."
+  },
+  "pageMeta": {
+    "services": {
+      "title": "Servicios de domótica en Madrid",
+      "description": "Diseño, instalación, integración Home Assistant y algoritmo de clima. Soluciones premium para viviendas y negocios en Madrid."
+    },
+    "homeAssistant": {
+      "title": "Home Assistant — Instalador en Madrid",
+      "description": "Especialistas en Home Assistant en Madrid. Comparativa con KNX y Loxone. Algoritmo de clima propio y control total sin nube."
+    },
+    "domoticaMadrid": {
+      "title": "Domótica Madrid — Empresa especializada en Home Assistant",
+      "description": "Empresa de domótica en Madrid especializada en Home Assistant. Instalaciones premium, algoritmo de clima y proyectos a medida."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes sobre domótica",
+      "description": "Resolvemos tus dudas sobre domótica, Home Assistant, precios, instalación y mantenimiento en Madrid."
+    },
+    "about": {
+      "title": "Sobre nosotros",
+      "description": "La Casa de la Domótica: especialistas en Home Assistant y domótica premium en Madrid desde el diseño hasta el mantenimiento."
+    },
+    "contact": {
+      "title": "Contacto — Solicita presupuesto",
+      "description": "Contacta con La Casa de la Domótica. Presupuesto sin compromiso para tu proyecto de domótica en Madrid. Respuesta en 24h."
+    }
+  },
+  "nav": {
+    "services": "Servicios",
+    "homeAssistant": "Home Assistant",
+    "about": "Nosotros",
+    "contact": "Contacto",
+    "faq": "FAQ",
+    "domoticaMadrid": "Domótica Madrid",
+    "cta": "Solicitar presupuesto"
+  },
+  "footer": {
+    "tagline": "Domótica a medida con Home Assistant. Proyectos complejos para quienes buscan control total.",
+    "navigation": "Navegación",
+    "contact": "Contacto",
+    "legal": "Legal",
+    "privacy": "Privacidad",
+    "cookies": "Cookies",
+    "legalNotice": "Aviso legal",
+    "hours": "Lun–Dom, 9:00 – 20:00",
+    "rights": "Todos los derechos reservados.",
+    "newsletterTitle": "Newsletter",
+    "newsletterDesc": "Consejos sobre domótica, novedades de Home Assistant y proyectos reales. Sin spam."
+  },
+  "home": {
+    "hero": {
+      "eyebrow": "Domótica premium · Madrid",
+      "title": "Tu hogar inteligente, diseñado a medida",
+      "subtitle": "Domótica a medida con Home Assistant y un algoritmo de clima inigualable. Confort, eficiencia y control total.",
+      "ctaPrimary": "Solicitar presupuesto",
+      "ctaSecondary": "Ver servicios"
+    },
+    "values": {
+      "title": "Por qué elegirnos",
+      "items": {
+        "custom": {
+          "title": "100% a medida",
+          "desc": "Sin paquetes genéricos. Diseñamos cada instalación según tus necesidades, estilo de vida y arquitectura."
+        },
+        "homeassistant": {
+          "title": "Home Assistant",
+          "desc": "La plataforma más flexible y potente. Control local, privacidad y compatibilidad con miles de dispositivos."
+        },
+        "climate": {
+          "title": "Algoritmo de clima",
+          "desc": "Nuestro algoritmo de climatización es inigualable. Anticipa, aprende y optimiza cada zona con una precisión que no encontrarás en otro instalador ni sistema."
+        }
+      }
+    },
+    "services": {
+      "title": "Servicios",
+      "subtitle": "Desde el diseño hasta el mantenimiento, acompañamos todo el ciclo de tu proyecto.",
+      "viewAll": "Ver todos los servicios",
+      "items": {
+        "design": "Diseño de proyecto",
+        "installation": "Instalación integral",
+        "integration": "Integración Home Assistant",
+        "maintenance": "Mantenimiento y soporte"
+      }
+    },
+    "systems": {
+      "title": "Sistemas que integramos",
+      "subtitle": "Todo bajo un solo control con Home Assistant. Sin apps sueltas ni ecosistemas cerrados.",
+      "items": {
+        "lighting": {
+          "title": "Iluminación",
+          "desc": "DALI, casquillos inteligentes y escenas ambientales. Control por zonas, horarios y presencia."
+        },
+        "climate": {
+          "title": "Climatización",
+          "desc": "Suelo radiante, aerotermia, fancoils y splits. Gestionados con nuestro algoritmo de clima propio."
+        },
+        "blinds": {
+          "title": "Persianas y cortinas",
+          "desc": "Motorización de persianas, toldos y cortinas integradas con escenas de luz y clima."
+        },
+        "security": {
+          "title": "Seguridad",
+          "desc": "Alarmas, videoportero IP, cámaras y control de acceso. Todo visible desde un solo dashboard."
+        },
+        "audio": {
+          "title": "Audiovisual",
+          "desc": "Multiroom, home cinema y distribución de audio. Integrado con el resto del hogar."
+        },
+        "energy": {
+          "title": "Energía",
+          "desc": "Monitorización de consumo, aerotermia, fotovoltaica y optimización energética en tiempo real."
+        }
+      }
+    },
+    "stats": {
+      "response": { "value": "24h", "label": "Respuesta máxima" },
+      "custom": { "value": "100%", "label": "Proyectos a medida" },
+      "local": { "value": "100%", "label": "Control local" },
+      "support": { "value": "7/7", "label": "Soporte disponible" }
+    },
+    "seoBlock": {
+      "title": "Empresa de domótica en Madrid",
+      "p1": "En La Casa de la Domótica somos especialistas en instalaciones de domótica en Madrid con Home Assistant. A diferencia de empresas que ofrecen soluciones genéricas con WiFi o asistentes de voz, diseñamos ecosistemas completos a medida: cableado, climatización, iluminación, seguridad y audiovisual integrados en una sola plataforma.",
+      "p2": "Nuestro algoritmo de climatización propio nos diferencia de cualquier otro instalador en Madrid. Mientras otros dependen de termostatos estándar o sistemas cerrados como Loxone, nosotros desarrollamos lógica avanzada que anticipa, aprende y optimiza cada zona con una precisión inigualable.",
+      "p3": "Trabajamos en Madrid y alrededores con particulares y negocios que buscan un sistema fiable: control total, privacidad sin nube y una integración que dura años. Cuéntanos tu proyecto y vemos qué encaja contigo.",
+      "link": "Más sobre domótica en Madrid"
+    },
+    "faqPreview": {
+      "title": "Preguntas frecuentes",
+      "viewAll": "Ver todas las preguntas"
+    },
+    "gallery": {
+      "title": "Ambientes que transformamos",
+      "subtitle": "La domótica no se nota en un gadget: se nota en la luz, el confort y la calma de cada espacio.",
+      "items": {
+        "lounge": {
+          "title": "Salón con luz tenue",
+          "caption": "Escenas"
+        },
+        "interior": {
+          "title": "Espacio abierto",
+          "caption": "Viviendas"
+        },
+        "lighting": {
+          "title": "Luz puntual",
+          "caption": "Iluminación"
+        },
+        "commercial": {
+          "title": "Barra con ambiente",
+          "caption": "Negocios"
+        }
+      },
+      "note": "Fotografías de ambiente. Cuando tengamos imágenes de vuestros proyectos, las sustituimos."
+    },
+    "ha": {
+      "title": "El corazón de tu hogar inteligente",
+      "desc": "Home Assistant es la plataforma open-source más avanzada del mercado. La integramos con nuestro algoritmo de clima propio para un confort que no tiene comparación.",
+      "cta": "Descubrir Home Assistant"
+    },
+    "cta": {
+      "title": "¿Listo para dar el paso?",
+      "desc": "Cuéntanos tu proyecto y te preparamos una propuesta personalizada sin compromiso.",
+      "button": "Contactar ahora"
+    }
+  },
+  "services": {
+    "title": "Servicios",
+    "subtitle": "Soluciones integrales de domótica adaptadas a cada proyecto y presupuesto.",
+    "items": {
+      "design": {
+        "title": "Diseño de proyecto",
+        "desc": "Analizamos tu espacio, necesidades y estilo de vida para diseñar una solución a medida. Planos, especificaciones y presupuesto detallado."
+      },
+      "installation": {
+        "title": "Instalación integral",
+        "desc": "Cableado estructurado, cuadros eléctricos, iluminación, climatización, persianas, seguridad y audiovisual. Todo integrado en un solo sistema."
+      },
+      "integration": {
+        "title": "Integración Home Assistant",
+        "desc": "Configuración avanzada de Home Assistant con nuestro algoritmo de clima: automatizaciones, escenas, dashboards personalizados y control por voz."
+      },
+      "climate": {
+        "title": "Algoritmo de clima",
+        "desc": "Sistema de climatización inteligente desarrollado por nosotros. Zonas independientes, eficiencia energética y una precisión que no encontrarás en otro instalador ni sistema."
+      },
+      "maintenance": {
+        "title": "Mantenimiento y soporte",
+        "desc": "Soporte continuo, actualizaciones, ampliaciones y resolución de incidencias. Tu sistema siempre al día."
+      },
+      "consulting": {
+        "title": "Consultoría",
+        "desc": "Asesoramiento para promotoras, arquitectos y interioristas que quieren integrar domótica desde la fase de diseño."
+      },
+      "commercial": {
+        "title": "Espacios comerciales",
+        "desc": "Restaurantes, hoteles y locales con control de iluminación ambiental, climatización por zonas y gestión energética."
+      }
+    },
+    "process": {
+      "title": "Nuestro proceso",
+      "steps": {
+        "1": { "title": "Consulta inicial", "desc": "Nos cuentas tu proyecto y tus expectativas." },
+        "2": { "title": "Visita técnica", "desc": "Evaluamos el espacio y definimos alcance." },
+        "3": { "title": "Propuesta", "desc": "Diseño detallado y presupuesto transparente." },
+        "4": { "title": "Instalación", "desc": "Ejecución impecable con mínima interferencia." },
+        "5": { "title": "Entrega", "desc": "Formación y soporte post-instalación." }
+      }
+    }
+  },
+  "homeAssistant": {
+    "title": "Home Assistant",
+    "subtitle": "La plataforma que lo cambia todo.",
+    "intro": "Home Assistant es el sistema de domótica open-source más avanzado del mundo. A diferencia de soluciones cerradas, te da control total sobre tu hogar sin depender de servidores en la nube ni suscripciones mensuales.",
+    "benefits": {
+      "privacy": {
+        "title": "Privacidad total",
+        "desc": "Todo funciona en local. Tus datos no salen de tu hogar."
+      },
+      "flexibility": {
+        "title": "Flexibilidad infinita",
+        "desc": "Compatible con más de 2.000 marcas y dispositivos. Sin vendor lock-in."
+      },
+      "climate": {
+        "title": "Algoritmo de clima inigualable",
+        "desc": "Lógica de climatización propia integrada en Home Assistant. Anticipa necesidades, gestiona zonas y optimiza el consumo con una precisión que no encontrarás en otro instalador ni sistema."
+      },
+      "dashboard": {
+        "title": "Dashboards personalizados",
+        "desc": "Interfaces a medida para cada habitación, dispositivo y usuario."
+      }
+    },
+    "comparison": {
+      "title": "Home Assistant frente a KNX y Loxone",
+      "subtitle": "KNX y Loxone son referentes del sector. Te explicamos por qué Home Assistant es nuestra elección y en qué se diferencia de cada uno.",
+      "vsKnx": {
+        "title": "Frente a KNX",
+        "intro": "KNX es el estándar europeo del cableado bus. Es fiable y robusto, pero Home Assistant aporta una capa de inteligencia que KNX por sí solo no puede ofrecer.",
+        "items": {
+          "brain": {
+            "title": "El cerebro, no solo el cableado",
+            "desc": "KNX controla dispositivos por bus. Home Assistant los integra y además unifica climatización, cámaras, multiroom, voz y energía en un solo sistema."
+          },
+          "flexibility": {
+            "title": "Cambios sin rehacer la instalación",
+            "desc": "Modificar KNX requiere el software ETS y un programador certificado. En Home Assistant ajustamos automatizaciones y escenas al instante."
+          },
+          "ecosystem": {
+            "title": "Sin depender de un solo fabricante",
+            "desc": "KNX te vincula a dispositivos compatibles con el bus. Home Assistant integra KNX y además miles de marcas: Shelly, Sonos, Daikin, Apple, Google..."
+          },
+          "cost": {
+            "title": "Menor coste en software",
+            "desc": "Home Assistant es open-source y gratuito. KNX exige licencias ETS y hardware específico con un coste por punto significativamente mayor."
+          }
+        }
+      },
+      "vsLoxone": {
+        "title": "Frente a Loxone",
+        "intro": "Loxone ofrece un sistema todo-en-uno sencillo. Pero su ecosistema cerrado tiene límites que Home Assistant elimina por completo.",
+        "items": {
+          "lockin": {
+            "title": "Cero vendor lock-in",
+            "desc": "Loxone exige su Miniserver y dispositivos propios. Con Home Assistant eliges el hardware que quieras y nunca quedas rehén de un fabricante."
+          },
+          "privacy": {
+            "title": "Privacidad real, sin nube obligatoria",
+            "desc": "Loxone depende de su nube para acceso remoto y funciones avanzadas. Home Assistant funciona 100% en local: tus datos no salen de tu hogar."
+          },
+          "custom": {
+            "title": "Personalización sin límites",
+            "desc": "Los dashboards y automatizaciones de Loxone están dentro de lo que el fabricante permite. En Home Assistant diseñamos interfaces y lógica a medida."
+          },
+          "future": {
+            "title": "Un sistema que evoluciona contigo",
+            "desc": "Loxone actualiza a su ritmo. Home Assistant tiene una comunidad global con integraciones nuevas cada semana y un futuro garantizado por ser open-source."
+          }
+        }
+      },
+      "note": "¿Ya tienes KNX instalado? Lo integramos en Home Assistant sin tirar nada. ¿Vienes de Loxone? Te migramos con una solución más libre y potente."
+    },
+    "whyUs": {
+      "title": "Por qué confiar en nosotros",
+      "desc": "Somos especialistas en Home Assistant con un algoritmo de clima que no tiene rival. No instalamos cajas: diseñamos ecosistemas completos donde cada grado cuenta."
+    },
+    "cta": "Hablemos de tu proyecto"
+  },
+  "domoticaMadrid": {
+    "title": "Domótica en Madrid",
+    "subtitle": "Instalaciones premium con Home Assistant y algoritmo de clima propio.",
+    "intro": "Si buscas una empresa de domótica en Madrid que vaya más allá de enchufes WiFi y asistentes de voz, estás en el lugar correcto. En La Casa de la Domótica diseñamos e instalamos sistemas completos con Home Assistant: la plataforma más potente, flexible y privada del mercado.",
+    "why": {
+      "title": "Por qué elegirnos frente a otras empresas de domótica en Madrid",
+      "items": {
+        "specialist": {
+          "title": "Especialistas en Home Assistant",
+          "desc": "No somos una empresa genérica de electricidad con domótica añadida. Home Assistant es nuestro núcleo y lo dominamos a nivel profesional."
+        },
+        "climate": {
+          "title": "Algoritmo de clima propio",
+          "desc": "Ninguna otra empresa de domótica en Madrid ofrece un algoritmo de climatización desarrollado a medida. Precisión, eficiencia y confort sin comparación."
+        },
+        "premium": {
+          "title": "Calidad en cada proyecto",
+          "desc": "No vendemos paquetes. Cada instalación se diseña desde cero según tu espacio, tus necesidades y tu presupuesto, con el mismo rigor técnico."
+        },
+        "privacy": {
+          "title": "Privacidad y control local",
+          "desc": "Sin dependencia de la nube ni suscripciones. Tu sistema funciona en tu hogar, tus datos no salen de tu red."
+        }
+      }
+    },
+    "compare": {
+      "title": "No somos como los demás",
+      "desc": "Muchas empresas de domótica en Madrid ofrecen instalaciones WiFi con Shelly o Alexa. Otras venden sistemas cerrados como Loxone. Nosotros vamos más allá: Home Assistant como cerebro, hardware de tu elección y un algoritmo de clima que ningún competidor puede replicar."
+    },
+    "cta": "Solicitar presupuesto en Madrid"
+  },
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "subtitle": "Resolvemos las dudas más habituales sobre domótica y nuestros servicios en Madrid.",
+    "items": {
+      "1": {
+        "q": "¿Qué es Home Assistant y por qué lo usáis?",
+        "a": "Home Assistant es la plataforma de domótica open-source más avanzada del mundo. La usamos porque ofrece control total, privacidad (todo funciona en local), compatibilidad con miles de dispositivos y personalización ilimitada. A diferencia de Alexa, Google Home o sistemas cerrados como Loxone, no dependes de la nube ni de un fabricante."
+      },
+      "2": {
+        "q": "¿Cuánto cuesta una instalación de domótica en Madrid?",
+        "a": "Depende del tamaño, los sistemas a integrar y el nivel de personalización. Una automatización puntual puede partir de unos pocos miles de euros; un proyecto integral en una vivienda grande puede superar los 30.000€. Siempre entregamos presupuesto detallado tras la visita técnica, sin compromiso."
+      },
+      "3": {
+        "q": "¿Se puede instalar domótica sin obra?",
+        "a": "En muchos casos sí, usando soluciones wireless. Para proyectos más completos con cableado estructurado, iluminación DALI o climatización integrada, lo ideal es hacerlo durante una reforma o en obra nueva. El resultado es más fiable y duradero."
+      },
+      "4": {
+        "q": "¿Qué diferencia vuestro algoritmo de clima?",
+        "a": "Nuestro algoritmo de climatización está desarrollado por nosotros e integrado en Home Assistant. Anticipa necesidades según horarios, ocupación y condiciones exteriores. Gestiona zonas de forma independiente y optimiza el consumo con una precisión que no encontrarás en termostatos estándar ni en otros instaladores."
+      },
+      "5": {
+        "q": "¿Home Assistant es mejor que KNX o Loxone?",
+        "a": "Son complementarios, no excluyentes. KNX es excelente para el cableado bus; nosotros lo integramos en Home Assistant para añadir inteligencia. Frente a Loxone, Home Assistant ofrece más flexibilidad, sin vendor lock-in y sin dependencia de nube. Consulta nuestra comparativa detallada en la página de Home Assistant."
+      },
+      "6": {
+        "q": "¿Ofrecéis mantenimiento tras la instalación?",
+        "a": "Sí. Ofrecemos soporte continuo, actualizaciones, ampliaciones y resolución de incidencias. Tu sistema siempre estará al día y funcionando de forma óptima."
+      },
+      "7": {
+        "q": "¿Trabajáis solo en Madrid?",
+        "a": "Principalmente en Madrid y alrededores. Para proyectos de cierta envergadura evaluamos instalaciones en otras provincias de España."
+      },
+      "8": {
+        "q": "¿Puedo ver el sistema antes de decidir?",
+        "a": "Sí. Disponemos de showroom con cita previa donde puedes ver dashboards reales de Home Assistant, climatización, iluminación y automatizaciones funcionando."
+      }
+    },
+    "cta": "¿Tienes otra pregunta? Contáctanos"
+  },
+  "about": {
+    "title": "Sobre nosotros",
+    "subtitle": "Pasión por la tecnología, obsesión por el detalle.",
+    "story": {
+      "title": "Nuestra historia",
+      "p1": "La Casa de la Domótica nació de una convicción: la domótica de verdad no se compra en una caja, se diseña. Cada hogar, cada restaurante, cada espacio tiene necesidades únicas que merecen una solución a medida.",
+      "p2": "Especializados en Home Assistant, trabajamos con clientes que buscan lo mejor: control total, privacidad, fiabilidad y una integración que respeta la arquitectura de su espacio."
+    },
+    "values": {
+      "title": "Nuestros valores",
+      "items": {
+        "quality": { "title": "Calidad sin concesiones", "desc": "Materiales de primera y ejecución impecable en cada detalle." },
+        "transparency": { "title": "Transparencia", "desc": "Presupuestos claros, sin sorpresas ni letra pequeña." },
+        "support": { "title": "Acompañamiento", "desc": "Desde la primera consulta hasta el mantenimiento a largo plazo." }
+      }
+    },
+    "area": {
+      "title": "Zona de actuación",
+      "desc": "Trabajamos principalmente en Madrid y alrededores, aunque evaluamos proyectos en toda España para instalaciones de cierta envergadura."
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "Cuéntanos tu proyecto. Te respondemos en menos de 24 horas.",
+    "phone": "Teléfono",
+    "email": "Email",
+    "hours": "Horario",
+    "hoursValue": "Lunes a domingo, 9:00 – 20:00",
+    "whatsapp": "WhatsApp",
+    "form": {
+      "name": "Nombre",
+      "email": "Email",
+      "phone": "Teléfono",
+      "projectType": "Tipo de proyecto",
+      "projectTypes": {
+        "residential": "Vivienda",
+        "restaurant": "Restaurante / local",
+        "community": "Comunidad",
+        "apartment": "Piso",
+        "other": "Otro"
+      },
+      "message": "Mensaje",
+      "messagePlaceholder": "Cuéntanos tu proyecto: tipo de vivienda, metros aproximados, sistemas que te interesan...",
+      "privacy": "Acepto la política de privacidad y el tratamiento de mis datos para recibir información sobre mi consulta.",
+      "submit": "Enviar consulta",
+      "sending": "Enviando...",
+      "success": "¡Mensaje enviado! Te contactaremos pronto.",
+      "error": "Error al enviar. Inténtalo de nuevo o llámanos."
+    }
+  },
+  "newsletter": {
+    "placeholder": "Tu email",
+    "submit": "Suscribirme",
+    "sending": "Enviando...",
+    "success": "¡Suscripción confirmada!",
+    "error": "Error al suscribirse. Inténtalo de nuevo.",
+    "privacy": "Al suscribirte aceptas nuestra política de privacidad."
+  },
+  "legal": {
+    "privacy": {
+      "title": "Política de privacidad",
+      "updated": "Última actualización: junio 2026"
+    },
+    "cookies": {
+      "title": "Política de cookies",
+      "updated": "Última actualización: junio 2026"
+    },
+    "notice": {
+      "title": "Aviso legal",
+      "updated": "Última actualización: junio 2026"
+    }
+  },
+  "cookieBanner": {
+    "message": "Utilizamos cookies para mejorar tu experiencia. Consulta nuestra política de cookies.",
+    "accept": "Aceptar",
+    "reject": "Rechazar"
+  }
+}
