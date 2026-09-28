@@ -1,6 +1,7 @@
 export const navItems = [
   { href: "/servicios", key: "services" as const },
   { href: "/home-assistant", key: "homeAssistant" as const },
+  { href: "/panel-demo", key: "demo" as const },
   { href: "/sobre-nosotros", key: "about" as const },
   { href: "/contacto", key: "contact" as const },
 ];

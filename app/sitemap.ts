@@ -5,6 +5,7 @@ const pages = [
   "",
   "/servicios",
   "/home-assistant",
+  "/panel-demo",
   "/domotica-madrid",
   "/preguntas-frecuentes",
   "/sobre-nosotros",

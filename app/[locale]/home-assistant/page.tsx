@@ -119,7 +119,10 @@ export default async function HomeAssistantPage({ params }: Props) {
           <p className="mt-6 text-base leading-relaxed text-text-muted">
             {t("whyUs.desc")}
           </p>
-          <div className="mt-10">
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <Button href="/panel-demo" variant="secondary">
+              {t("ctaDemo")}
+            </Button>
             <Button href="/contacto">{t("cta")}</Button>
           </div>
         </div>

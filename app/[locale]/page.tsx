@@ -75,7 +75,7 @@ export default async function HomePage({ params }: Props) {
           </p>
           <div className="animate-fade-up-delay-3 mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <Button href="/contacto">{t("hero.ctaPrimary")}</Button>
-            <Button href="/servicios" variant="secondary">
+            <Button href="/panel-demo" variant="secondary">
               {t("hero.ctaSecondary")}
             </Button>
           </div>

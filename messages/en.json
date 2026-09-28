@@ -27,11 +27,16 @@
     "contact": {
       "title": "Contact — Request a quote",
       "description": "Contact La Casa de la Domótica. No-obligation quote for your home automation project in Madrid. Response within 24h."
+    },
+    "demo": {
+      "title": "Home automation demo panel",
+      "description": "Try an interactive Home Assistant-style panel: lights, climate, pool, blinds, security and more. Visual only, no real connection."
     }
   },
   "nav": {
     "services": "Services",
     "homeAssistant": "Home Assistant",
+    "demo": "Demo panel",
     "about": "About",
     "contact": "Contact",
     "faq": "FAQ",
@@ -57,7 +62,7 @@
       "title": "Your smart home, custom designed",
       "subtitle": "Custom home automation with Home Assistant and an unmatched climate algorithm. Comfort, efficiency and total control.",
       "ctaPrimary": "Request a quote",
-      "ctaSecondary": "View services"
+      "ctaSecondary": "Try demo panel"
     },
     "values": {
       "title": "Why choose us",
@@ -118,10 +123,22 @@
       }
     },
     "stats": {
-      "response": { "value": "24h", "label": "Max response time" },
-      "custom": { "value": "100%", "label": "Custom projects" },
-      "local": { "value": "100%", "label": "Local control" },
-      "support": { "value": "7/7", "label": "Support available" }
+      "response": {
+        "value": "24h",
+        "label": "Max response time"
+      },
+      "custom": {
+        "value": "100%",
+        "label": "Custom projects"
+      },
+      "local": {
+        "value": "100%",
+        "label": "Local control"
+      },
+      "support": {
+        "value": "7/7",
+        "label": "Support available"
+      }
     },
     "seoBlock": {
       "title": "Home automation company in Madrid",
@@ -204,11 +221,26 @@
     "process": {
       "title": "Our process",
       "steps": {
-        "1": { "title": "Initial consultation", "desc": "You tell us about your project and expectations." },
-        "2": { "title": "Technical visit", "desc": "We assess the space and define scope." },
-        "3": { "title": "Proposal", "desc": "Detailed design and transparent quote." },
-        "4": { "title": "Installation", "desc": "Flawless execution with minimal disruption." },
-        "5": { "title": "Handover", "desc": "Training and post-installation support." }
+        "1": {
+          "title": "Initial consultation",
+          "desc": "You tell us about your project and expectations."
+        },
+        "2": {
+          "title": "Technical visit",
+          "desc": "We assess the space and define scope."
+        },
+        "3": {
+          "title": "Proposal",
+          "desc": "Detailed design and transparent quote."
+        },
+        "4": {
+          "title": "Installation",
+          "desc": "Flawless execution with minimal disruption."
+        },
+        "5": {
+          "title": "Handover",
+          "desc": "Training and post-installation support."
+        }
       }
     }
   },
@@ -287,6 +319,7 @@
       "title": "Why trust us",
       "desc": "We are Home Assistant specialists with a climate algorithm that has no rival. We don't install boxes — we design complete ecosystems where every degree matters."
     },
+    "ctaDemo": "Try demo panel",
     "cta": "Let's talk about your project"
   },
   "domoticaMadrid": {
@@ -370,9 +403,18 @@
     "values": {
       "title": "Our values",
       "items": {
-        "quality": { "title": "Uncompromising quality", "desc": "Top-tier materials and flawless execution in every detail." },
-        "transparency": { "title": "Transparency", "desc": "Clear quotes, no surprises or fine print." },
-        "support": { "title": "Partnership", "desc": "From the first consultation to long-term maintenance." }
+        "quality": {
+          "title": "Uncompromising quality",
+          "desc": "Top-tier materials and flawless execution in every detail."
+        },
+        "transparency": {
+          "title": "Transparency",
+          "desc": "Clear quotes, no surprises or fine print."
+        },
+        "support": {
+          "title": "Partnership",
+          "desc": "From the first consultation to long-term maintenance."
+        }
       }
     },
     "area": {
@@ -435,5 +477,359 @@
     "message": "We use cookies to improve your experience. See our cookie policy.",
     "accept": "Accept",
     "reject": "Reject"
+  },
+  "demo": {
+    "pageTitle": "Demo panel",
+    "exitDemo": "Back to site",
+    "pageSubtitle": "Full villa simulation: floors, garden, pool, spa, solar energy and more. Fully interactive.",
+    "badge": "Demo villa · 480 m²",
+    "title": "Sierra Norte Residence",
+    "subtitle": "Master panel · Home Assistant",
+    "live": "Live",
+    "outdoor": "Outdoor",
+    "power": "Load",
+    "solar": "Solar",
+    "battery": "Battery",
+    "off": "Off",
+    "on": "On",
+    "close": "Close",
+    "open": "Open",
+    "closed": "Closed",
+    "fountain": "Garden fountain",
+    "scenesTitle": "Scenes",
+    "scenes": {
+      "lightsOff": "Lights off",
+      "lightsOn": "Lights on",
+      "morning": "Good morning",
+      "night": "Good night",
+      "cinema": "Cinema mode",
+      "relax": "Mood lighting"
+    },
+    "boadilla": {
+      "central": "Central panel",
+      "welcome": "Welcome",
+      "floors": "Floors",
+      "global": "Global status",
+      "mode": "Mode",
+      "winter": "Winter",
+      "summer": "Summer",
+      "zonesActive": "active zones",
+      "real": "Actual",
+      "setpoint": "Setpoint",
+      "humidity": "Humidity",
+      "climateZone": "Climate",
+      "lightsOn": "Lights on",
+      "lightsOff": "Lights off",
+      "demoLive": "Live demo",
+      "away": "Away",
+      "awayTitle": "Away mode active",
+      "awaySub": "Lights off · Blinds closed · Alarm activated"
+    },
+    "nav": {
+      "floor": "Floor / area",
+      "room": "Room"
+    },
+    "floors": {
+      "ground": "Ground floor",
+      "upper": "Upper floor",
+      "basement": "Basement",
+      "exterior": "Exterior",
+      "wellness": "Pool & spa",
+      "systems": "Systems",
+      "categories": "Categories"
+    },
+    "rooms": {
+      "hall": "Hall",
+      "living": "Living room",
+      "dining": "Dining room",
+      "kitchen": "Kitchen",
+      "library": "Library",
+      "master": "Master suite",
+      "guest1": "Guest room 1",
+      "guest2": "Guest room 2",
+      "office": "Office",
+      "cinema": "Home cinema",
+      "gym": "Gym",
+      "wine": "Wine cellar",
+      "facade": "Facade & driveway",
+      "gardens": "Gardens",
+      "access": "Access",
+      "pool": "Pool",
+      "spa": "Jacuzzi",
+      "sauna": "Sauna",
+      "deck": "Pool deck",
+      "energy": "Energy",
+      "security": "Security",
+      "catLights": "Lights",
+      "catBlinds": "Blinds",
+      "catAudio": "Audio",
+      "catClimate": "Climate",
+      "catPresence": "Presence",
+      "history": "History"
+    },
+    "controls": {
+      "lighting": "Lighting",
+      "climate": "Climate",
+      "blinds": "Blinds",
+      "audio": "Audio"
+    },
+    "devices": {
+      "mainLight": "Main light",
+      "ambientLight": "Ambient light",
+      "accentLight": "Accent light",
+      "pendantLight": "Pendant light",
+      "underCabinet": "Under cabinet",
+      "readingLamp": "Reading lamp",
+      "bedside": "Bedside",
+      "deskLamp": "Desk lamp",
+      "coveLight": "Cove light",
+      "softLight": "Soft light",
+      "rgbStrip": "RGB strip",
+      "blinds": "Blinds",
+      "blackout": "Blackout",
+      "audio": "Audio",
+      "tv": "TV",
+      "fireplace": "Fireplace",
+      "extractor": "Range hood",
+      "projector": "Projector",
+      "ventilation": "Ventilation",
+      "dehumidifier": "Dehumidifier",
+      "doorLock": "Door lock",
+      "presence": "Presence",
+      "locked": "Locked",
+      "unlocked": "Unlocked",
+      "window": "Window",
+      "windowOpen": "Open",
+      "windowClosed": "Closed",
+      "airQuality": "Air quality",
+      "aqOk": "Optimal",
+      "aqHigh": "High CO₂",
+      "leakSensor": "Water leak",
+      "leakOk": "No leaks",
+      "leakAlert": "Leak!",
+      "bedHeat": "Bed heating",
+      "brightness": "Brightness",
+      "colorTemp": "Color temperature",
+      "warm": "Warm",
+      "cool": "Cool",
+      "position": "Position",
+      "blindOpen": "Open",
+      "blindClosed": "Closed",
+      "blindUp": "Raise",
+      "blindDown": "Lower"
+    },
+    "stats": {
+      "lights": "lights on",
+      "zones": "active climates"
+    },
+    "overview": {
+      "rooms": "Main rooms",
+      "occupied": "Occupied",
+      "empty": "Empty",
+      "open": "Open",
+      "presence": "Presence"
+    },
+    "presence": {
+      "living": "Living",
+      "kitchen": "Kitchen",
+      "office": "Office",
+      "master": "Suite",
+      "pool": "Pool"
+    },
+    "lights": {
+      "hall": "Entrance hall",
+      "living": "Main living room",
+      "dining": "Dining room",
+      "kitchen": "Kitchen",
+      "library": "Library",
+      "master": "Master suite",
+      "guest1": "Guest room 1",
+      "guest2": "Guest room 2",
+      "office": "Office",
+      "cinema": "Home cinema",
+      "gym": "Gym",
+      "facade": "Facade",
+      "driveway": "Driveway",
+      "gardenN": "North garden",
+      "gardenS": "South garden",
+      "poolDeck": "Pool deck"
+    },
+    "climate": {
+      "living": "Living climate",
+      "master": "Suite climate",
+      "office": "Office climate",
+      "cinema": "Cinema climate",
+      "gym": "Gym climate",
+      "wine": "Wine cellar"
+    },
+    "thermostat": {
+      "title": "Thermostat",
+      "subtitle": "Radiant floor (heat/cool) + fancoil",
+      "current": "Room",
+      "mode": "Mode",
+      "fanSpeed": "Fancoil speed",
+      "floor": "Radiant floor",
+      "floorOn": "Floor on",
+      "fancoil": "Fancoil",
+      "fancoilMode": "Fancoil mode",
+      "fancoilModes": {
+        "cool": "Cooling",
+        "heat": "Heating",
+        "fan": "Fan only"
+      },
+      "hint": "The radiant floor works for both heating and cooling. The fancoil adds airflow at the selected speed.",
+      "modes": {
+        "heat": "Heat",
+        "cool": "Cool",
+        "auto": "Auto",
+        "off": "Off"
+      },
+      "fan": {
+        "off": "Off",
+        "auto": "Auto"
+      }
+    },
+    "wine": {
+      "note": "Stabilised temperature and humidity for conservation. Critical 24/7 zone."
+    },
+    "pool": {
+      "title": "Heated pool",
+      "current": "Water",
+      "target": "Target",
+      "heating": "Heating",
+      "heatingActive": "Heating…",
+      "filter": "Filtration",
+      "cover": "Cover",
+      "jets": "Jets"
+    },
+    "spa": {
+      "title": "Jacuzzi",
+      "bubbles": "Bubbles"
+    },
+    "sauna": {
+      "title": "Sauna"
+    },
+    "blinds": {
+      "autoSun": "Auto shading",
+      "lock": {
+        "none": "Free",
+        "wind": "Wind lock",
+        "frost": "Frost lock"
+      },
+      "living": "Living blinds",
+      "dining": "Dining blinds",
+      "master": "Suite curtains",
+      "office": "Office blinds",
+      "closed": "closed",
+      "autoSunOn": "Auto shading on",
+      "autoSunOff": "Auto shading off",
+      "position": "Position"
+    },
+    "security": {
+      "title": "Perimeter alarm",
+      "armed": "Alarm activated",
+      "disarmed": "Alarm deactivated",
+      "cameras": "cameras"
+    },
+    "gates": {
+      "title": "Access",
+      "main": "Main gate",
+      "pedestrian": "Pedestrian"
+    },
+    "music": {
+      "title": "Zone audio",
+      "playing": "Playing",
+      "garden": "Garden audio",
+      "pool": "Pool audio"
+    },
+    "energy": {
+      "title": "Energy",
+      "live": "Energy balance",
+      "grid": "Grid",
+      "importing": "Importing",
+      "exporting": "Exporting",
+      "climates": "Climate zones"
+    },
+    "ev": {
+      "title": "EV charger",
+      "charging": "Charging",
+      "idle": "Idle"
+    },
+    "garage": {
+      "title": "Double garage",
+      "left": "Left door",
+      "right": "Right door"
+    },
+    "irrigation": {
+      "title": "Zoned irrigation",
+      "north": "North garden",
+      "south": "South garden",
+      "pots": "Planters",
+      "lawn": "Lawn",
+      "active": "Watering",
+      "idle": "Idle"
+    },
+    "disclaimer": "Sample panel for a large residence. Not connected to any real system — just to show the level of control we build.",
+    "ctaDesc": "This can be the brain of your home. We design custom Home Assistant panels for villas and complex projects.",
+    "cta": "I want a panel like this",
+    "favorites": {
+      "title": "Central",
+      "lightsOff": "Lights off",
+      "lightsOn": "Lights on",
+      "blinds": "Blinds",
+      "blindsOpen": "Open blinds",
+      "blindsClose": "Close blinds",
+      "alarm": "Alarm",
+      "access": "Access"
+    },
+    "moods": {
+      "title": "Lighting moods",
+      "off": "Off",
+      "relax": "Relax",
+      "read": "Reading",
+      "bright": "Bright"
+    },
+    "weather": {
+      "sunny": "Sunny",
+      "cloudy": "Cloudy",
+      "wind": "Windy",
+      "rain": "Rain"
+    },
+    "presenceCentral": {
+      "title": "Presence",
+      "rooms": "occupied zones",
+      "lead": "Whole-home occupancy in real time. Scenes respect occupied rooms."
+    },
+    "history": {
+      "title": "History",
+      "more": "See more",
+      "less": "See less",
+      "lead": "Full log of panel actions: scenes, favourites, access and status changes.",
+      "empty": "No events recorded yet."
+    },
+    "alerts": {
+      "leak": "Alert: possible water leak detected",
+      "awayArmed": "Away mode · alarm armed"
+    },
+    "access": {
+      "doorbell": "Door intercom",
+      "ringing": "Doorbell ringing…",
+      "idle": "Idle",
+      "simulate": "Simulate ring",
+      "ringLog": "Front door doorbell",
+      "gate": "Gate",
+      "open": "Open",
+      "closed": "Closed"
+    },
+    "categories": {
+      "lightsLead": "All home lights, by room.",
+      "blindsLead": "Central shading",
+      "audioLead": "Multiroom audio. Sync zones in one tap.",
+      "climateLead": "Climate across all zones."
+    },
+    "audioCat": {
+      "sync": "Sync multiroom",
+      "synced": "Audio synced"
+    }
   }
 }

@@ -27,11 +27,16 @@
     "contact": {
       "title": "Contacto — Solicita presupuesto",
       "description": "Contacta con La Casa de la Domótica. Presupuesto sin compromiso para tu proyecto de domótica en Madrid. Respuesta en 24h."
+    },
+    "demo": {
+      "title": "Panel demo de domótica",
+      "description": "Prueba un panel interactivo de Home Assistant: luces, clima, piscina, persianas, seguridad y más. Solo visual, sin conexión real."
     }
   },
   "nav": {
     "services": "Servicios",
     "homeAssistant": "Home Assistant",
+    "demo": "Panel demo",
     "about": "Nosotros",
     "contact": "Contacto",
     "faq": "FAQ",
@@ -57,7 +62,7 @@
       "title": "Tu hogar inteligente, diseñado a medida",
       "subtitle": "Domótica a medida con Home Assistant y un algoritmo de clima inigualable. Confort, eficiencia y control total.",
       "ctaPrimary": "Solicitar presupuesto",
-      "ctaSecondary": "Ver servicios"
+      "ctaSecondary": "Probar panel demo"
     },
     "values": {
       "title": "Por qué elegirnos",
@@ -287,6 +292,7 @@
       "title": "Por qué confiar en nosotros",
       "desc": "Somos especialistas en Home Assistant con un algoritmo de clima que no tiene rival. No instalamos cajas: diseñamos ecosistemas completos donde cada grado cuenta."
     },
+    "ctaDemo": "Probar panel demo",
     "cta": "Hablemos de tu proyecto"
   },
   "domoticaMadrid": {
@@ -435,5 +441,359 @@
     "message": "Utilizamos cookies para mejorar tu experiencia. Consulta nuestra política de cookies.",
     "accept": "Aceptar",
     "reject": "Rechazar"
+  },
+  "demo": {
+    "pageTitle": "Panel de demostración",
+    "exitDemo": "Volver al sitio",
+    "pageSubtitle": "Simulación de una villa completa: plantas, jardín, piscina, spa, energía solar y más. Todo interactivo.",
+    "badge": "Villa demo · 480 m²",
+    "title": "Residencia Sierra Norte",
+    "subtitle": "Panel maestro · Home Assistant",
+    "live": "En vivo",
+    "outdoor": "Exterior",
+    "power": "Consumo",
+    "solar": "Solar",
+    "battery": "Batería",
+    "off": "Apagado",
+    "on": "Encendido",
+    "close": "Cerrar",
+    "open": "Abierto",
+    "closed": "Cerrado",
+    "fountain": "Fuente jardín",
+    "scenesTitle": "Escenas",
+    "scenes": {
+      "lightsOff": "Apagar luces",
+      "lightsOn": "Encender luces",
+      "morning": "Buenos días",
+      "night": "Buenas noches",
+      "cinema": "Modo cine",
+      "relax": "Ambiente"
+    },
+    "boadilla": {
+      "central": "Panel Central",
+      "welcome": "Bienvenido",
+      "floors": "Plantas",
+      "global": "Estado global",
+      "mode": "Modo",
+      "winter": "Invierno",
+      "summer": "Verano",
+      "zonesActive": "zonas activas",
+      "real": "Real",
+      "setpoint": "Consigna",
+      "humidity": "Humedad",
+      "climateZone": "Clima",
+      "lightsOn": "Luces on",
+      "lightsOff": "Luces off",
+      "demoLive": "Demo en vivo",
+      "away": "Fuera de casa",
+      "awayTitle": "Casa en modo ausente",
+      "awaySub": "Luces apagadas · Persianas bajadas · Alarma activada"
+    },
+    "nav": {
+      "floor": "Planta / zona",
+      "room": "Habitación"
+    },
+    "floors": {
+      "ground": "Planta baja",
+      "upper": "Planta alta",
+      "basement": "Sótano",
+      "exterior": "Exterior",
+      "wellness": "Piscina & spa",
+      "systems": "Sistemas",
+      "categories": "Categorías"
+    },
+    "rooms": {
+      "hall": "Hall",
+      "living": "Salón",
+      "dining": "Comedor",
+      "kitchen": "Cocina",
+      "library": "Biblioteca",
+      "master": "Suite principal",
+      "guest1": "Hab. invitados 1",
+      "guest2": "Hab. invitados 2",
+      "office": "Oficina",
+      "cinema": "Sala de cine",
+      "gym": "Gimnasio",
+      "wine": "Bodega",
+      "facade": "Fachada y acceso",
+      "gardens": "Jardines",
+      "access": "Acceso",
+      "pool": "Piscina",
+      "spa": "Jacuzzi",
+      "sauna": "Sauna",
+      "deck": "Terraza piscina",
+      "energy": "Energía",
+      "security": "Seguridad",
+      "history": "Historial",
+      "catLights": "Luces",
+      "catBlinds": "Persianas",
+      "catAudio": "Audio",
+      "catClimate": "Clima",
+      "catPresence": "Presencia"
+    },
+    "favorites": {
+      "title": "Central",
+      "lightsOff": "Apagar luces",
+      "lightsOn": "Encender luces",
+      "blinds": "Persianas",
+      "blindsOpen": "Abrir persianas",
+      "blindsClose": "Cerrar persianas",
+      "alarm": "Alarma",
+      "access": "Acceso"
+    },
+    "moods": {
+      "title": "Ambientes de luz",
+      "off": "Off",
+      "relax": "Relax",
+      "read": "Lectura",
+      "bright": "Brillante"
+    },
+    "weather": {
+      "sunny": "Soleado",
+      "cloudy": "Nublado",
+      "wind": "Viento",
+      "rain": "Lluvia"
+    },
+    "presenceCentral": {
+      "title": "Presencia",
+      "rooms": "zonas ocupadas",
+      "lead": "Ocupación de la casa en tiempo real. Las escenas respetan las estancias ocupadas."
+    },
+    "history": {
+      "title": "Historial",
+      "more": "Ver más",
+      "less": "Ver menos",
+      "lead": "Registro completo de acciones del panel: escenas, favoritos, accesos y cambios de estado.",
+      "empty": "Todavía no hay eventos registrados."
+    },
+    "alerts": {
+      "leak": "Alerta: posible fuga de agua detectada",
+      "awayArmed": "Casa ausente · alarma activada"
+    },
+    "access": {
+      "doorbell": "Portero",
+      "ringing": "Timbre sonando…",
+      "idle": "En espera",
+      "simulate": "Simular timbre",
+      "ringLog": "Timbre en puerta principal",
+      "gate": "Portón",
+      "open": "Abierto",
+      "closed": "Cerrado"
+    },
+    "categories": {
+      "lightsLead": "Todas las luces de la casa, por estancia.",
+      "blindsLead": "Sombreado central",
+      "audioLead": "Audio multiroom. Sincroniza salidas en un toque.",
+      "climateLead": "Clima de todas las zonas."
+    },
+    "audioCat": {
+      "sync": "Sincronizar multiroom",
+      "synced": "Audio sincronizado"
+    },
+    "controls": {
+      "lighting": "Iluminación",
+      "climate": "Climatización",
+      "blinds": "Persianas",
+      "audio": "Audio"
+    },
+    "devices": {
+      "mainLight": "Luz principal",
+      "ambientLight": "Luz ambiente",
+      "accentLight": "Luz de acento",
+      "pendantLight": "Lámpara colgante",
+      "underCabinet": "Bajo mueble",
+      "readingLamp": "Lámpara de lectura",
+      "bedside": "Mesilla",
+      "deskLamp": "Lámpara de escritorio",
+      "coveLight": "Luz perimetral",
+      "softLight": "Luz suave",
+      "rgbStrip": "Tira RGB",
+      "blinds": "Persianas",
+      "blackout": "Oscurecimiento",
+      "audio": "Audio",
+      "tv": "Televisión",
+      "fireplace": "Chimenea",
+      "extractor": "Campana extractora",
+      "projector": "Proyector",
+      "ventilation": "Ventilación",
+      "dehumidifier": "Deshumidificador",
+      "doorLock": "Cerradura",
+      "presence": "Presencia",
+      "locked": "Cerrada",
+      "unlocked": "Abierta",
+      "window": "Ventana",
+      "windowOpen": "Abierta",
+      "windowClosed": "Cerrada",
+      "airQuality": "Calidad del aire",
+      "aqOk": "Óptimo",
+      "aqHigh": "Alto CO₂",
+      "leakSensor": "Fuga de agua",
+      "leakOk": "Sin fugas",
+      "leakAlert": "¡Fuga!",
+      "bedHeat": "Calefacción cama",
+      "brightness": "Brillo",
+      "colorTemp": "Temperatura de color",
+      "warm": "Cálida",
+      "cool": "Fría",
+      "position": "Posición",
+      "blindOpen": "Abiertas",
+      "blindClosed": "Cerradas",
+      "blindUp": "Subir",
+      "blindDown": "Bajar"
+    },
+    "stats": {
+      "lights": "luces on",
+      "zones": "climas activos"
+    },
+    "overview": {
+      "rooms": "Estancias principales",
+      "occupied": "Ocupado",
+      "empty": "Vacío",
+      "open": "Abrir",
+      "presence": "Presencia"
+    },
+    "presence": {
+      "living": "Salón",
+      "kitchen": "Cocina",
+      "office": "Oficina",
+      "master": "Suite",
+      "pool": "Piscina"
+    },
+    "lights": {
+      "hall": "Hall de entrada",
+      "living": "Salón principal",
+      "dining": "Comedor",
+      "kitchen": "Cocina",
+      "library": "Biblioteca",
+      "master": "Suite principal",
+      "guest1": "Hab. invitados 1",
+      "guest2": "Hab. invitados 2",
+      "office": "Oficina",
+      "cinema": "Sala de cine",
+      "gym": "Gimnasio",
+      "facade": "Fachada",
+      "driveway": "Acceso / driveway",
+      "gardenN": "Jardín norte",
+      "gardenS": "Jardín sur",
+      "poolDeck": "Terraza piscina"
+    },
+    "climate": {
+      "living": "Clima salón",
+      "master": "Clima suite",
+      "office": "Clima oficina",
+      "cinema": "Clima cine",
+      "gym": "Clima gimnasio",
+      "wine": "Bodega"
+    },
+    "thermostat": {
+      "title": "Termostato",
+      "subtitle": "Suelo radiante/refrescante + fancoil",
+      "current": "Ambiente",
+      "mode": "Modo",
+      "fanSpeed": "Velocidad fancoil",
+      "floor": "Suelo radiante",
+      "floorOn": "Suelo on",
+      "fancoil": "Fancoil",
+      "fancoilMode": "Modo fancoil",
+      "fancoilModes": {
+        "cool": "Refrigeración",
+        "heat": "Calefacción",
+        "fan": "Solo ventilador"
+      },
+      "hint": "El suelo radiante actúa en calor y en frío. El fancoil suma caudal de aire según la velocidad elegida.",
+      "modes": {
+        "heat": "Calor",
+        "cool": "Frío",
+        "auto": "Auto",
+        "off": "Off"
+      },
+      "fan": {
+        "off": "Off",
+        "auto": "Auto"
+      }
+    },
+    "wine": {
+      "note": "Temperatura y humedad estabilizadas para conservación. Zona crítica 24/7."
+    },
+    "pool": {
+      "title": "Piscina climatizada",
+      "current": "Agua",
+      "target": "Objetivo",
+      "heating": "Calefacción",
+      "heatingActive": "Calentando…",
+      "filter": "Filtración",
+      "cover": "Cubierta",
+      "jets": "Chorros"
+    },
+    "spa": {
+      "title": "Jacuzzi",
+      "bubbles": "Burbujas"
+    },
+    "sauna": {
+      "title": "Sauna"
+    },
+    "blinds": {
+      "living": "Persianas salón",
+      "dining": "Persianas comedor",
+      "master": "Cortinas suite",
+      "office": "Persianas oficina",
+      "closed": "cerrado",
+      "autoSun": "Sombreado auto",
+      "autoSunOn": "Sombreado auto activo",
+      "autoSunOff": "Sombreado auto apagado",
+      "position": "Posición",
+      "lock": {
+        "none": "Libre",
+        "wind": "Bloqueo viento",
+        "frost": "Bloqueo helada"
+      }
+    },
+    "security": {
+      "title": "Alarma perimetral",
+      "armed": "Alarma activada",
+      "disarmed": "Alarma desactivada",
+      "cameras": "cámaras"
+    },
+    "gates": {
+      "title": "Accesos",
+      "main": "Portón",
+      "pedestrian": "Peatonal"
+    },
+    "music": {
+      "title": "Audio zona",
+      "playing": "Reproduciendo",
+      "garden": "Audio jardín",
+      "pool": "Audio piscina"
+    },
+    "energy": {
+      "title": "Energía",
+      "live": "Balance energético",
+      "grid": "Red",
+      "importing": "Importando",
+      "exporting": "Exportando",
+      "climates": "Zonas de clima"
+    },
+    "ev": {
+      "title": "Cargador VE",
+      "charging": "Cargando",
+      "idle": "En espera"
+    },
+    "garage": {
+      "title": "Garaje doble",
+      "left": "Puerta izquierda",
+      "right": "Puerta derecha"
+    },
+    "irrigation": {
+      "title": "Riego por zonas",
+      "north": "Jardín N",
+      "south": "Jardín S",
+      "pots": "Jardineras",
+      "lawn": "Césped",
+      "active": "Regando",
+      "idle": "Parado"
+    },
+    "disclaimer": "Panel de muestra de una residencia grande. No está conectado a ningún sistema real — solo para que veas el nivel de control que montamos.",
+    "ctaDesc": "Así puede ser el cerebro de tu casa. Diseñamos paneles a medida con Home Assistant para villas y proyectos complejos.",
+    "cta": "Quiero un panel así"
   }
 }
