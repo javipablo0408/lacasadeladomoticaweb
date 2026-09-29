@@ -1276,11 +1276,12 @@ export function DemoDashboard() {
       window.clearTimeout(timer);
       timer = window.setTimeout(() => setAmbientMode(true), AMBIENT_IDLE_MS);
     };
-    window.addEventListener("pointerdown", bump);
+    const root = document.querySelector(".boadilla-demo-root");
+    root?.addEventListener("pointerdown", bump);
     window.addEventListener("keydown", bump);
     return () => {
       window.clearTimeout(timer);
-      window.removeEventListener("pointerdown", bump);
+      root?.removeEventListener("pointerdown", bump);
       window.removeEventListener("keydown", bump);
     };
   }, [ambientMode]);
@@ -1864,12 +1865,25 @@ export function DemoDashboard() {
       </div>
 
       {ambientMode && (
-        <div className="boadilla-ambient" role="dialog" aria-label={t("ambient.title")}>
+        <div
+          className="boadilla-ambient"
+          role="dialog"
+          aria-modal="true"
+          aria-label={t("ambient.title")}
+          onPointerDown={(e) => e.stopPropagation()}
+        >
           <div className="boadilla-ambient__top">
             <button
               type="button"
               className="boadilla-ambient__exit"
-              onClick={() => setAmbientMode(false)}
+              onPointerDown={(e) => {
+                e.stopPropagation();
+                setAmbientMode(false);
+              }}
+              onClick={(e) => {
+                e.stopPropagation();
+                setAmbientMode(false);
+              }}
             >
               {t("ambient.exit")}
             </button>

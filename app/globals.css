@@ -1906,12 +1906,12 @@ body {
 
 /* —— Loxone-style upgrades: ribbon, pins, ambient, algorithm —— */
 .boadilla-shell {
-  padding-bottom: 4.5rem;
+  padding-bottom: 4.75rem;
 }
 .boadilla-ribbon {
   position: sticky;
   bottom: 0.35rem;
-  z-index: 12;
+  z-index: 8;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 0.35rem;
@@ -2052,9 +2052,9 @@ body {
 }
 
 .boadilla-ambient {
-  position: absolute;
+  position: fixed;
   inset: 0;
-  z-index: 40;
+  z-index: 60;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
