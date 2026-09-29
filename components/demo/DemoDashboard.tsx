@@ -60,8 +60,13 @@ import {
   Car,
   Eye,
   History,
+  Star,
+  Monitor,
   type LucideIcon,
 } from "lucide-react";
+
+type RibbonId = "favorites" | "central" | "rooms" | "categories";
+type ClimateRunState = "heating" | "cooling" | "holding" | "off";
 
 type ClimateMode = "heat" | "cool" | "auto" | "off";
 type FanSpeed = "off" | "auto" | 1 | 2 | 3;
@@ -404,6 +409,28 @@ const ROOM_BACKGROUNDS: Record<RoomId, string> = {
 function clamp(n: number, min: number, max: number) {
   return Math.min(max, Math.max(min, n));
 }
+
+function climateRunState(c: ZoneClimate): ClimateRunState {
+  if (c.mode === "off" || (!c.floor && !c.fancoil)) return "off";
+  const delta = c.target - c.current;
+  if (Math.abs(delta) < 0.25) return "holding";
+  if (c.mode === "heat" || (c.mode === "auto" && c.fancoilMode === "heat")) {
+    return delta > 0 ? "heating" : "holding";
+  }
+  if (c.mode === "cool" || (c.mode === "auto" && c.fancoilMode === "cool")) {
+    return delta < 0 ? "cooling" : "holding";
+  }
+  if (delta > 0.25) return "heating";
+  if (delta < -0.25) return "cooling";
+  return "holding";
+}
+
+function algorithmMinutes(c: ZoneClimate) {
+  return Math.max(5, Math.min(42, Math.round(Math.abs(c.target - c.current) * 18 + 8)));
+}
+
+const DEFAULT_PINS: ClimateKey[] = ["living", "master", "kitchen", "office"];
+const AMBIENT_IDLE_MS = 75_000;
 
 function defaultFancoilMode(mode: ClimateMode): FancoilMode {
   if (mode === "heat") return "heat";
@@ -926,6 +953,10 @@ export function DemoDashboard() {
   const [roomMood, setRoomMood] = useState<Partial<Record<ClimateKey, LightMood>>>(
     {}
   );
+  const [pinned, setPinned] = useState<ClimateKey[]>(DEFAULT_PINS);
+  const [ribbon, setRibbon] = useState<RibbonId>("central");
+  const [ambientMode, setAmbientMode] = useState(false);
+  const [ambientDate, setAmbientDate] = useState("");
 
   const leakAlert = useMemo(
     () =>
@@ -1153,11 +1184,123 @@ export function DemoDashboard() {
   }, []);
 
   const go = (id: RoomId) => {
+    setAmbientMode(false);
     setRoom(id);
+    if (id === "inicio") {
+      setRibbon("central");
+    } else if (
+      id === "catLights" ||
+      id === "catBlinds" ||
+      id === "catAudio" ||
+      id === "catClimate" ||
+      id === "catPresence"
+    ) {
+      setRibbon("categories");
+    } else if (ZONE_ROOMS.some((r) => r.id === id)) {
+      setRibbon("rooms");
+    } else {
+      setRibbon("central");
+    }
     if (typeof window !== "undefined" && window.innerWidth < 900) {
       setSidebarOpen(false);
     }
   };
+
+  const togglePin = (key: ClimateKey) => {
+    setPinned((prev) => {
+      if (prev.includes(key)) {
+        const next = prev.filter((k) => k !== key);
+        log(`${t(`rooms.${key}`)} · ${t("pins.removed")}`);
+        return next.length ? next : prev;
+      }
+      if (prev.length >= 8) return prev;
+      log(`${t(`rooms.${key}`)} · ${t("pins.added")}`);
+      return [...prev, key];
+    });
+  };
+
+  const toggleRoomLights = (key: ClimateKey) => {
+    setAway(false);
+    setActiveScene(null);
+    setDevices((prev) => {
+      const defs = ROOM_DEVICES[key].filter((d) => d.kind === "light");
+      const anyOn = defs.some((d) => prev[key][d.id]?.on);
+      const roomState = { ...prev[key] };
+      for (const d of defs) {
+        const cur = roomState[d.id];
+        if (!cur) continue;
+        roomState[d.id] = {
+          ...cur,
+          on: !anyOn,
+          value: !anyOn ? cur.value || 55 : 0,
+        };
+      }
+      log(
+        `${t(`rooms.${key}`)} · ${
+          anyOn ? t("favorites.lightsOff") : t("favorites.lightsOn")
+        }`
+      );
+      return { ...prev, [key]: roomState };
+    });
+  };
+
+  const nudgeSetpoint = (key: ClimateKey, delta: number) => {
+    setAway(false);
+    setClimates((prev) => {
+      const c = prev[key];
+      const wine = key === "wine";
+      const min = wine ? 10 : 16;
+      const max = wine ? 18 : 30;
+      const target = clamp(Number((c.target + delta).toFixed(1)), min, max);
+      log(`${t(`rooms.${key}`)} · ${t("boadilla.setpoint")} ${target.toFixed(1)}°`);
+      return { ...prev, [key]: { ...c, target } };
+    });
+  };
+
+  const selectRibbon = (id: RibbonId) => {
+    setAmbientMode(false);
+    setRibbon(id);
+    if (id === "favorites" || id === "central" || id === "rooms") {
+      setRoom("inicio");
+      if (id === "rooms") setSidebarOpen(true);
+    } else if (id === "categories") {
+      setRoom("catLights");
+      setSidebarOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    if (ambientMode) return;
+    let timer = window.setTimeout(() => setAmbientMode(true), AMBIENT_IDLE_MS);
+    const bump = () => {
+      window.clearTimeout(timer);
+      timer = window.setTimeout(() => setAmbientMode(true), AMBIENT_IDLE_MS);
+    };
+    window.addEventListener("pointerdown", bump);
+    window.addEventListener("keydown", bump);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener("pointerdown", bump);
+      window.removeEventListener("keydown", bump);
+    };
+  }, [ambientMode]);
+
+  useEffect(() => {
+    if (!ambientMode) return;
+    const fmt = () => {
+      const now = new Date();
+      setAmbientDate(
+        now.toLocaleDateString("es-ES", {
+          weekday: "long",
+          day: "numeric",
+          month: "long",
+        })
+      );
+    };
+    fmt();
+    const id = window.setInterval(fmt, 60_000);
+    return () => window.clearInterval(id);
+  }, [ambientMode]);
 
   useEffect(() => {
     const next = ROOM_BACKGROUNDS[room];
@@ -1369,6 +1512,15 @@ export function DemoDashboard() {
               <Home size={13} strokeWidth={1.8} />
               {t("boadilla.away")}
             </button>
+            <button
+              type="button"
+              className="boadilla-mode__btn boadilla-mode__btn--ambient"
+              onClick={() => setAmbientMode(true)}
+              aria-label={t("ambient.open")}
+            >
+              <Monitor size={13} strokeWidth={1.8} />
+              {t("ambient.short")}
+            </button>
           </div>
         </header>
 
@@ -1433,6 +1585,11 @@ export function DemoDashboard() {
               history={history}
               occupiedCount={occupiedCount}
               away={away}
+              ribbon={ribbon}
+              pinned={pinned}
+              onTogglePin={togglePin}
+              onToggleLights={toggleRoomLights}
+              onNudgeSetpoint={nudgeSetpoint}
               onScene={runScene}
               onGoto={go}
               onCentral={(action) => {
@@ -1682,8 +1839,104 @@ export function DemoDashboard() {
         </main>
 
         <p className="boadilla-disclaimer">{t("disclaimer")}</p>
+
+        <nav className="boadilla-ribbon" aria-label={t("ribbon.label")}>
+          {(
+            [
+              ["favorites", Star, "ribbon.favorites"],
+              ["central", LayoutGrid, "ribbon.central"],
+              ["rooms", Home, "ribbon.rooms"],
+              ["categories", AppWindow, "ribbon.categories"],
+            ] as const
+          ).map(([id, Icon, labelKey]) => (
+            <button
+              key={id}
+              type="button"
+              className={`boadilla-ribbon__btn ${ribbon === id ? "is-active" : ""}`}
+              onClick={() => selectRibbon(id)}
+            >
+              <Icon size={16} strokeWidth={1.7} />
+              <span>{t(labelKey)}</span>
+            </button>
+          ))}
+        </nav>
       </div>
       </div>
+
+      {ambientMode && (
+        <div className="boadilla-ambient" role="dialog" aria-label={t("ambient.title")}>
+          <div className="boadilla-ambient__top">
+            <button
+              type="button"
+              className="boadilla-ambient__exit"
+              onClick={() => setAmbientMode(false)}
+            >
+              {t("ambient.exit")}
+            </button>
+            <p className="boadilla-ambient__badge">{t("ambient.title")}</p>
+          </div>
+          <div className="boadilla-ambient__clock">
+            <time>{clock || "—:—"}</time>
+            <p>{ambientDate}</p>
+          </div>
+          <button
+            type="button"
+            className="boadilla-ambient__weather"
+            onClick={() => {
+              setAmbientMode(false);
+              go("catBlinds");
+            }}
+          >
+            <CloudSun size={22} />
+            <div>
+              <strong>
+                {weather.temp.toFixed(1)}° · {t(`weather.${weather.condition}`)}
+              </strong>
+              <span>
+                {t("weather.wind")} {weather.wind} km/h · {t("boadilla.humidity")}{" "}
+                {weather.humidity}%
+              </span>
+            </div>
+          </button>
+          <div className="boadilla-ambient__favs">
+            {pinned.map((key) => {
+              const c = climates[key];
+              const run = climateRunState(c);
+              const lightsOn = roomLightsOn(devices[key], key);
+              return (
+                <button
+                  key={key}
+                  type="button"
+                  className={`boadilla-ambient__tile ${lightsOn ? "has-lights" : ""}`}
+                  onClick={() => {
+                    setAmbientMode(false);
+                    go(key);
+                  }}
+                >
+                  <span className="boadilla-ambient__tile-name">
+                    {t(`rooms.${key}`)}
+                  </span>
+                  <strong>{c.current.toFixed(1)}°</strong>
+                  <span className={`boadilla-algo is-${run}`}>
+                    {t(`algorithm.${run}`)}
+                  </span>
+                </button>
+              );
+            })}
+          </div>
+          <div className="boadilla-ambient__status">
+            <span>
+              {t("energy.title")} · {power.toFixed(1)} kW
+            </span>
+            <span>
+              {armed ? t("security.armed") : t("security.disarmed")}
+            </span>
+            <span>
+              {occupiedCount} {t("presenceCentral.rooms")}
+            </span>
+          </div>
+        </div>
+      )}
     </div>
   );
 }
@@ -1711,6 +1964,11 @@ function HomeView({
   onGoto,
   onCentral,
   away,
+  ribbon,
+  pinned,
+  onTogglePin,
+  onToggleLights,
+  onNudgeSetpoint,
 }: {
   t: TFunc;
   climates: Record<ClimateKey, ZoneClimate>;
@@ -1727,6 +1985,11 @@ function HomeView({
   history: HistoryItem[];
   occupiedCount: number;
   away: boolean;
+  ribbon: RibbonId;
+  pinned: ClimateKey[];
+  onTogglePin: (key: ClimateKey) => void;
+  onToggleLights: (key: ClimateKey) => void;
+  onNudgeSetpoint: (key: ClimateKey, delta: number) => void;
   onScene: (id: SceneId) => void;
   onGoto: (id: RoomId) => void;
   onCentral: (
@@ -1760,162 +2023,289 @@ function HomeView({
     return total > 0 && open >= total / 2;
   })();
 
+  const showCentral = ribbon === "central" || ribbon === "favorites";
+  const showFloors = ribbon === "central" || ribbon === "rooms";
+  const showPins = ribbon === "favorites" || ribbon === "central";
+
   return (
     <div className="boadilla-home">
       <div className="boadilla-home__floors">
-        <h3 className="boadilla-section-title">
-          <Home size={16} /> {t("favorites.title")}
-        </h3>
-        <div className="boadilla-favs">
-          <button
-            type="button"
-            className={`boadilla-fav ${anyLightOn ? "is-on" : ""}`}
-            onClick={() => onCentral("lights")}
-          >
-            <LightbulbOff size={16} />
-            <span>
-              {anyLightOn
-                ? t("favorites.lightsOff")
-                : t("favorites.lightsOn")}
-            </span>
-          </button>
-          <button
-            type="button"
-            className={`boadilla-fav ${blindsOpenish ? "is-on" : ""}`}
-            onClick={() => onCentral("blinds")}
-          >
-            <Blinds size={16} />
-            <span>
-              {blindsOpenish
-                ? t("favorites.blindsClose")
-                : t("favorites.blindsOpen")}
-            </span>
-          </button>
-          <button
-            type="button"
-            className={`boadilla-fav ${armed ? "is-danger" : ""}`}
-            onClick={() => onCentral("alarm")}
-          >
-            <Shield size={16} />
-            <span>
-              {armed ? t("security.armed") : t("favorites.alarm")}
-            </span>
-          </button>
-          <button
-            type="button"
-            className={`boadilla-fav ${away ? "is-danger" : ""}`}
-            onClick={() => onCentral("away")}
-          >
-            <Home size={16} />
-            <span>{t("boadilla.away")}</span>
-          </button>
-          <button
-            type="button"
-            className="boadilla-fav"
-            onClick={() => onCentral("energy")}
-          >
-            <Zap size={16} />
-            <span>{t("energy.title")}</span>
-          </button>
-          <button
-            type="button"
-            className="boadilla-fav"
-            onClick={() => onCentral("access")}
-          >
-            <Lock size={16} />
-            <span>{t("favorites.access")}</span>
-          </button>
-        </div>
-
-        <h3 className="boadilla-section-title">
-          <LayoutGrid size={16} /> {t("boadilla.floors")}
-        </h3>
-        {FLOOR_ROWS.map((floor) => (
-          <div key={floor.id} className="boadilla-floor-block">
-            <p className="boadilla-floor-label">{t(`floors.${floor.id}`)}</p>
-            <div
-              className="boadilla-floor-row"
-              style={{ ["--cols" as string]: floor.rooms.length }}
-            >
-              {floor.rooms.map((id) => {
-                const def = ZONE_ROOMS.find((r) => r.id === id)!;
-                const c = climates[def.climate!];
-                const active =
-                  def.climate === "wine"
-                    ? c.mode !== "off"
-                    : c.floor || c.fancoil;
+        {showPins && (
+          <>
+            <h3 className="boadilla-section-title">
+              <Star size={16} /> {t("pins.title")}
+            </h3>
+            <div className="boadilla-pins">
+              {pinned.map((key) => {
+                const def = ZONE_ROOMS.find((r) => r.climate === key)!;
+                const c = climates[key];
+                const run = climateRunState(c);
+                const lightsOn = roomLightsOn(devices[key], key);
                 const Icon = def.icon;
-                const roomDevs = devices[def.climate!];
-                const lightsOn = roomLightsOn(roomDevs, def.climate!);
-                const occupied = roomDevs.presence?.on;
                 return (
-                  <button
-                    key={id}
-                    type="button"
-                    className={`boadilla-floor-card ${active ? "is-active" : ""} ${
-                      lightsOn ? "has-lights" : ""
-                    } ${occupied ? "has-presence" : ""}`}
-                    onClick={() => onGoto(id)}
+                  <div
+                    key={key}
+                    className={`boadilla-pin ${lightsOn ? "has-lights" : ""}`}
                   >
-                    <div className="boadilla-floor-card__head">
-                      <Icon
-                        size={18}
-                        style={{ color: def.color }}
-                        strokeWidth={1.5}
-                      />
-                      <span>{t(`rooms.${id}`).toUpperCase()}</span>
+                    <button
+                      type="button"
+                      className="boadilla-pin__main"
+                      onClick={() => onGoto(key)}
+                    >
+                      <Icon size={16} style={{ color: def.color }} />
+                      <span>{t(`rooms.${key}`)}</span>
+                      <strong>{c.current.toFixed(1)}°</strong>
+                      <em className={`boadilla-algo is-${run}`}>
+                        {t(`algorithm.${run}`)}
+                      </em>
+                    </button>
+                    <div className="boadilla-pin__actions">
+                      <button
+                        type="button"
+                        aria-label={t("pins.toggleLights")}
+                        className={lightsOn ? "is-on" : ""}
+                        onClick={() => onToggleLights(key)}
+                      >
+                        <Lightbulb size={14} />
+                      </button>
+                      <button
+                        type="button"
+                        aria-label={t("pins.cooler")}
+                        onClick={() => onNudgeSetpoint(key, -0.5)}
+                      >
+                        −
+                      </button>
+                      <button
+                        type="button"
+                        aria-label={t("pins.warmer")}
+                        onClick={() => onNudgeSetpoint(key, 0.5)}
+                      >
+                        +
+                      </button>
+                      <button
+                        type="button"
+                        aria-label={t("pins.remove")}
+                        className="is-star"
+                        onClick={() => onTogglePin(key)}
+                      >
+                        <Star size={14} fill="currentColor" />
+                      </button>
                     </div>
-                    <div className="boadilla-floor-card__rc">
-                      <div>
-                        <span className="lbl">{t("boadilla.real")}</span>
-                        <span className="val">{c.current.toFixed(1)}°</span>
-                      </div>
-                      <div>
-                        <span className="lbl">{t("boadilla.setpoint")}</span>
-                        <span className="val val--set">{c.target.toFixed(1)}°</span>
-                      </div>
-                    </div>
-                    <p className={`boadilla-floor-card__meta ${active ? "is-on" : ""}`}>
-                      {occupied
-                        ? t("overview.occupied")
-                        : active
-                          ? `${
-                              c.mode === "cool"
-                                ? t("boadilla.summer")
-                                : t("boadilla.winter")
-                            } · ${
-                              lightsOn
-                                ? t("boadilla.lightsOn")
-                                : t("boadilla.lightsOff")
-                            }`
-                          : t("off")}
-                    </p>
-                  </button>
+                  </div>
                 );
               })}
             </div>
-          </div>
-        ))}
+          </>
+        )}
 
-        <div className="boadilla-scenes-panel">
-          <h3 className="boadilla-scenes-panel__title">
-            <Sparkles size={14} strokeWidth={1.6} />
-            <span>{t("scenesTitle")}</span>
-          </h3>
-          <div className="boadilla-scenes">
-            {SCENES.map(({ id, icon: Icon }) => (
+        {showCentral && (
+          <>
+            <h3 className="boadilla-section-title">
+              <Home size={16} /> {t("favorites.title")}
+            </h3>
+            <div className="boadilla-favs">
               <button
-                key={id}
                 type="button"
-                className={`boadilla-scene ${activeScene === id ? "is-active" : ""}`}
-                onClick={() => onScene(id)}
+                className={`boadilla-fav ${anyLightOn ? "is-on" : ""}`}
+                onClick={() => onCentral("lights")}
               >
-                <Icon size={16} strokeWidth={1.6} />
-                <span>{t(`scenes.${id}`)}</span>
+                <LightbulbOff size={16} />
+                <span>
+                  {anyLightOn
+                    ? t("favorites.lightsOff")
+                    : t("favorites.lightsOn")}
+                </span>
               </button>
+              <button
+                type="button"
+                className={`boadilla-fav ${blindsOpenish ? "is-on" : ""}`}
+                onClick={() => onCentral("blinds")}
+              >
+                <Blinds size={16} />
+                <span>
+                  {blindsOpenish
+                    ? t("favorites.blindsClose")
+                    : t("favorites.blindsOpen")}
+                </span>
+              </button>
+              <button
+                type="button"
+                className={`boadilla-fav ${armed ? "is-danger" : ""}`}
+                onClick={() => onCentral("alarm")}
+              >
+                <Shield size={16} />
+                <span>
+                  {armed ? t("security.armed") : t("favorites.alarm")}
+                </span>
+              </button>
+              <button
+                type="button"
+                className={`boadilla-fav ${away ? "is-danger" : ""}`}
+                onClick={() => onCentral("away")}
+              >
+                <Home size={16} />
+                <span>{t("boadilla.away")}</span>
+              </button>
+              <button
+                type="button"
+                className="boadilla-fav"
+                onClick={() => onCentral("energy")}
+              >
+                <Zap size={16} />
+                <span>{t("energy.title")}</span>
+              </button>
+              <button
+                type="button"
+                className="boadilla-fav"
+                onClick={() => onCentral("access")}
+              >
+                <Lock size={16} />
+                <span>{t("favorites.access")}</span>
+              </button>
+            </div>
+          </>
+        )}
+
+        {showFloors && (
+          <>
+            <h3 className="boadilla-section-title">
+              <LayoutGrid size={16} /> {t("boadilla.floors")}
+            </h3>
+            {FLOOR_ROWS.map((floor) => (
+              <div key={floor.id} className="boadilla-floor-block">
+                <p className="boadilla-floor-label">{t(`floors.${floor.id}`)}</p>
+                <div
+                  className="boadilla-floor-row"
+                  style={{ ["--cols" as string]: floor.rooms.length }}
+                >
+                  {floor.rooms.map((id) => {
+                    const def = ZONE_ROOMS.find((r) => r.id === id)!;
+                    const c = climates[def.climate!];
+                    const run = climateRunState(c);
+                    const active =
+                      def.climate === "wine"
+                        ? c.mode !== "off"
+                        : c.floor || c.fancoil;
+                    const Icon = def.icon;
+                    const roomDevs = devices[def.climate!];
+                    const lightsOn = roomLightsOn(roomDevs, def.climate!);
+                    const occupied = roomDevs.presence?.on;
+                    const isPinned = pinned.includes(def.climate!);
+                    return (
+                      <div
+                        key={id}
+                        className={`boadilla-floor-card ${active ? "is-active" : ""} ${
+                          lightsOn ? "has-lights" : ""
+                        } ${occupied ? "has-presence" : ""}`}
+                      >
+                        <button
+                          type="button"
+                          className="boadilla-floor-card__hit"
+                          onClick={() => onGoto(id)}
+                        >
+                          <div className="boadilla-floor-card__head">
+                            <Icon
+                              size={18}
+                              style={{ color: def.color }}
+                              strokeWidth={1.5}
+                            />
+                            <span>{t(`rooms.${id}`).toUpperCase()}</span>
+                          </div>
+                          <div className="boadilla-floor-card__rc">
+                            <div>
+                              <span className="lbl">{t("boadilla.real")}</span>
+                              <span className="val">{c.current.toFixed(1)}°</span>
+                            </div>
+                            <div>
+                              <span className="lbl">{t("boadilla.setpoint")}</span>
+                              <span className="val val--set">
+                                {c.target.toFixed(1)}°
+                              </span>
+                            </div>
+                          </div>
+                          <p
+                            className={`boadilla-floor-card__meta ${
+                              active ? "is-on" : ""
+                            }`}
+                          >
+                            <span className={`boadilla-algo is-${run}`}>
+                              {t(`algorithm.${run}`)}
+                            </span>
+                            {" · "}
+                            {occupied
+                              ? t("overview.occupied")
+                              : lightsOn
+                                ? t("boadilla.lightsOn")
+                                : t("boadilla.lightsOff")}
+                          </p>
+                        </button>
+                        <div className="boadilla-floor-card__quick">
+                          <button
+                            type="button"
+                            className={lightsOn ? "is-on" : ""}
+                            aria-label={t("pins.toggleLights")}
+                            onClick={() => onToggleLights(def.climate!)}
+                          >
+                            <Lightbulb size={13} />
+                          </button>
+                          <button
+                            type="button"
+                            aria-label={t("pins.cooler")}
+                            onClick={() => onNudgeSetpoint(def.climate!, -0.5)}
+                          >
+                            −
+                          </button>
+                          <button
+                            type="button"
+                            aria-label={t("pins.warmer")}
+                            onClick={() => onNudgeSetpoint(def.climate!, 0.5)}
+                          >
+                            +
+                          </button>
+                          <button
+                            type="button"
+                            className={`is-star ${isPinned ? "is-on" : ""}`}
+                            aria-label={
+                              isPinned ? t("pins.remove") : t("pins.add")
+                            }
+                            onClick={() => onTogglePin(def.climate!)}
+                          >
+                            <Star
+                              size={13}
+                              fill={isPinned ? "currentColor" : "none"}
+                            />
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             ))}
+          </>
+        )}
+
+        {showCentral && (
+          <div className="boadilla-scenes-panel">
+            <h3 className="boadilla-scenes-panel__title">
+              <Sparkles size={14} strokeWidth={1.6} />
+              <span>{t("scenesTitle")}</span>
+            </h3>
+            <div className="boadilla-scenes">
+              {SCENES.map(({ id, icon: Icon }) => (
+                <button
+                  key={id}
+                  type="button"
+                  className={`boadilla-scene ${activeScene === id ? "is-active" : ""}`}
+                  onClick={() => onScene(id)}
+                >
+                  <Icon size={16} strokeWidth={1.6} />
+                  <span>{t(`scenes.${id}`)}</span>
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
 
       <div className="boadilla-home__side">
@@ -1991,6 +2381,13 @@ function HomeView({
           <div className="boadilla-energy-card__value">
             {power.toFixed(1)}
             <span className="unit">kW</span>
+          </div>
+          <div className="boadilla-energy-mini" aria-hidden>
+            <span className="is-solar">{t("solar")}</span>
+            <i />
+            <span className="is-home">{t("power")}</span>
+            <i />
+            <span className="is-battery">{t("battery")}</span>
           </div>
           <p className="boadilla-energy-card__sub">
             {t("solar")} {solar.toFixed(1)} kW · {t("battery")}{" "}
@@ -2081,6 +2478,8 @@ function ZoneView({
   const extras = ROOM_DEVICES[def.climate!];
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const aq = roomDevices.aq;
+  const run = climateRunState(climate);
+  const algoMins = algorithmMinutes(climate);
 
   const toggleFloor = () =>
     onClimate({ ...climate, floor: !climate.floor });
@@ -2134,6 +2533,23 @@ function ZoneView({
           {t("boadilla.humidity")} {climate.humidity.toFixed(0)} %
           {aq ? ` · CO₂ ${aq.value} ppm` : ""}
         </p>
+        <div className={`boadilla-algo-card is-${run}`}>
+          <span className={`boadilla-algo is-${run}`}>{t(`algorithm.${run}`)}</span>
+          <p>
+            {run === "off"
+              ? t("algorithm.offHint")
+              : run === "holding"
+                ? t("algorithm.holdingHint")
+                : t("algorithm.nextAdjust", { minutes: algoMins })}
+          </p>
+          {run !== "off" && (
+            <small>
+              {t("algorithm.savings", {
+                kwh: (Math.abs(climate.target - climate.current) * 0.18 + 0.12).toFixed(2),
+              })}
+            </small>
+          )}
+        </div>
         <div className="boadilla-thermo__controls">
           <button
             type="button"
@@ -2928,36 +3344,52 @@ function EnergySpecial({
   const grid = Number((solar - power).toFixed(1));
   return (
     <div className="boadilla-special">
-      <div className="boadilla-energy-flow" aria-hidden>
-        <div className="boadilla-energy-flow__node is-solar">
-          <Sun size={18} />
-          <strong>{solar.toFixed(1)} kW</strong>
-          <span>{t("solar")}</span>
+      <div className="boadilla-energy-flow is-diagram" aria-hidden>
+        <p className="boadilla-energy-flow__title">{t("energy.live")}</p>
+        <div className="boadilla-energy-flow__hub">
+          <div className="boadilla-energy-flow__node is-solar">
+            <Sun size={18} />
+            <strong>{solar.toFixed(1)} kW</strong>
+            <span>{t("solar")}</span>
+          </div>
+          <div
+            className={`boadilla-energy-flow__pipe is-animated ${
+              solar > 0.2 ? "is-active" : ""
+            }`}
+          />
+          <div className="boadilla-energy-flow__node is-home">
+            <Home size={18} />
+            <strong>{power.toFixed(1)} kW</strong>
+            <span>{t("power")}</span>
+          </div>
+          <div
+            className={`boadilla-energy-flow__pipe is-animated ${
+              battery > 0 ? "is-active" : ""
+            }`}
+          />
+          <div className="boadilla-energy-flow__node is-battery">
+            <BatteryCharging size={18} />
+            <strong>{battery.toFixed(0)}%</strong>
+            <span>{t("battery")}</span>
+          </div>
+          <div
+            className={`boadilla-energy-flow__pipe is-animated ${
+              Math.abs(grid) > 0.1 ? "is-active" : ""
+            }`}
+          />
+          <div
+            className={`boadilla-energy-flow__node ${
+              grid >= 0 ? "is-export" : "is-import"
+            }`}
+          >
+            <Zap size={18} />
+            <strong>{Math.abs(grid).toFixed(1)} kW</strong>
+            <span>
+              {grid >= 0 ? t("energy.exporting") : t("energy.importing")}
+            </span>
+          </div>
         </div>
-        <div className="boadilla-energy-flow__pipe" />
-        <div className="boadilla-energy-flow__node is-home">
-          <Home size={18} />
-          <strong>{power.toFixed(1)} kW</strong>
-          <span>{t("power")}</span>
-        </div>
-        <div className="boadilla-energy-flow__pipe" />
-        <div className="boadilla-energy-flow__node is-battery">
-          <BatteryCharging size={18} />
-          <strong>{battery.toFixed(0)}%</strong>
-          <span>{t("battery")}</span>
-        </div>
-        <div className="boadilla-energy-flow__pipe" />
-        <div
-          className={`boadilla-energy-flow__node ${
-            grid >= 0 ? "is-export" : "is-import"
-          }`}
-        >
-          <Zap size={18} />
-          <strong>{Math.abs(grid).toFixed(1)} kW</strong>
-          <span>
-            {grid >= 0 ? t("energy.exporting") : t("energy.importing")}
-          </span>
-        </div>
+        <p className="boadilla-energy-flow__caption">{t("energy.flowHint")}</p>
       </div>
       <div className="boadilla-special__grid">
         <div className="boadilla-energy-card">
