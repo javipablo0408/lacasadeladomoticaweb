@@ -744,11 +744,12 @@
     },
     "energy": {
       "title": "Energy",
-      "live": "Energy balance",
+      "live": "Energy flow",
       "grid": "Grid",
       "importing": "Importing",
       "exporting": "Exporting",
-      "climates": "Climate zones"
+      "climates": "Climate zones",
+      "flowHint": "Solar → home → battery → grid. Live flow updates."
     },
     "ev": {
       "title": "EV charger",
@@ -781,6 +782,39 @@
       "blindsClose": "Close blinds",
       "alarm": "Alarm",
       "access": "Access"
+    },
+    "pins": {
+      "title": "Favorites",
+      "add": "Pin favorite",
+      "remove": "Unpin favorite",
+      "added": "added to favorites",
+      "removed": "removed from favorites",
+      "toggleLights": "Room lights",
+      "cooler": "Lower setpoint",
+      "warmer": "Raise setpoint"
+    },
+    "ribbon": {
+      "label": "Main navigation",
+      "favorites": "Favorites",
+      "central": "Central",
+      "rooms": "Rooms",
+      "categories": "Categories"
+    },
+    "ambient": {
+      "title": "Wall mode",
+      "short": "Wall",
+      "open": "Open wall mode",
+      "exit": "Exit"
+    },
+    "algorithm": {
+      "heating": "Heating",
+      "cooling": "Cooling",
+      "holding": "At setpoint",
+      "off": "Off",
+      "nextAdjust": "Algorithm · next adjustment in {minutes} min",
+      "holdingHint": "Algorithm · zone stable, optimising load",
+      "offHint": "Climate idle in this zone",
+      "savings": "Estimated savings · {kwh} kWh next hour"
     },
     "moods": {
       "title": "Lighting moods",

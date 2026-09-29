@@ -541,6 +541,39 @@
       "alarm": "Alarma",
       "access": "Acceso"
     },
+    "pins": {
+      "title": "Favoritos",
+      "add": "Fijar favorito",
+      "remove": "Quitar favorito",
+      "added": "añadido a favoritos",
+      "removed": "quitado de favoritos",
+      "toggleLights": "Luces de la zona",
+      "cooler": "Bajar consigna",
+      "warmer": "Subir consigna"
+    },
+    "ribbon": {
+      "label": "Navegación principal",
+      "favorites": "Favoritos",
+      "central": "Central",
+      "rooms": "Habitaciones",
+      "categories": "Categorías"
+    },
+    "ambient": {
+      "title": "Modo mural",
+      "short": "Mural",
+      "open": "Abrir modo mural",
+      "exit": "Salir"
+    },
+    "algorithm": {
+      "heating": "Calentando",
+      "cooling": "Enfriando",
+      "holding": "En consigna",
+      "off": "Apagado",
+      "nextAdjust": "Algoritmo · próximo ajuste en {minutes} min",
+      "holdingHint": "Algoritmo · zona estable, optimizando consumo",
+      "offHint": "Clima en reposo en esta zona",
+      "savings": "Ahorro estimado · {kwh} kWh en la próxima hora"
+    },
     "moods": {
       "title": "Ambientes de luz",
       "off": "Off",
@@ -767,11 +800,12 @@
     },
     "energy": {
       "title": "Energía",
-      "live": "Balance energético",
+      "live": "Flujo energético",
       "grid": "Red",
       "importing": "Importando",
       "exporting": "Exportando",
-      "climates": "Zonas de clima"
+      "climates": "Zonas de clima",
+      "flowHint": "Solar → casa → batería → red. El flujo se actualiza en vivo."
     },
     "ev": {
       "title": "Cargador VE",
